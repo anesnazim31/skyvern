@@ -1,0 +1,16 @@
+[Unit]
+Description=Skyvern API server
+After=network-online.target postgresql.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=skyvern
+WorkingDirectory=/opt/skyvern
+EnvironmentFile=/opt/skyvern/.env
+ExecStart=/opt/skyvern/.venv/bin/skyvern run server
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
